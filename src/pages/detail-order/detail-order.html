@@ -1,0 +1,122 @@
+<ion-header>
+  <ion-navbar>
+    <div class="myheader">
+      <div class="judul_kiri">
+        Detail
+      </div>
+      <div class="judul_kanan">
+        Hi, Bro !
+      </div>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div padding>
+  <ion-segment [(ngModel)]="tab" style="border:1px solid #dadada">
+    <ion-segment-button value="info">
+      Info
+    </ion-segment-button>
+    <ion-segment-button value="status">
+      Status
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- TAB INFO -->
+  <div class="info" *ngIf="tab=='info'">
+    <label class="receipt_title">Receipt Number</label>
+    <label class="receipt_number">{{receipt_number}}</label>
+    <label class="order_date">Order Date : {{order_date}}</label>
+    <label class="laststatus_title">Last Status</label>
+    <label class="laststatus">{{last_status}}</label>
+    <label class="laststatus_title">Container Number</label>
+    <label class="laststatus">{{container_number}}</label>
+    <label class="setstatus_label">Set Status To</label>
+    <button ion-button block (click)="change_status()">Change Status</button>
+    <button ion-button block (click)="cetak_nota()">Cetak Nota</button>
+
+    <div class="sender_info">
+      <label class="setstatus_label">Sender Info</label>
+      <label class="label_left">Name</label>
+      <label class="label_right">{{pengirim_nama}}</label>
+
+      <label class="label_left">Phone</label>
+      <label class="label_right">{{pengirim_telp}}</label>
+
+      <label class="label_left">Address</label>
+      <label class="label_block">{{pengirim_alamat}}</label>
+    </div>
+
+    <div class="sender_info">
+      <label class="setstatus_label">Receiver Info</label>
+      <label class="label_left">Name</label>
+      <label class="label_right">{{penerima_nama}}</label>
+
+      <label class="label_left">Phone</label>
+      <label class="label_right">{{penerima_telp}}</label>
+
+      <label class="label_left">Address</label>
+      <label class="label_block">{{penerima_alamat}}</label>
+    </div>
+
+    <div class="package_info">
+      <label class="receipt_title">Package Info</label>
+      <label class="label_left" *ngIf="tipe_paket=='box'">Box Size</label>
+      <label class="label_right" *ngIf="tipe_paket=='box'">{{ukuran_box}}</label>
+
+      <label class="label_left">Berat Total</label>
+      <label class="label_right">{{weight}}</label>
+
+      <label class="label_left">Type</label>
+      <label class="label_right">{{jenis_pengiriman}}</label>
+    </div>
+
+    <div class="div_item_main">
+      <label class="lbl">Informasi Isi Box</label>
+      <table class="mytable">
+        <tr>
+          <th>No</th>
+          <th>Nama Barang</th>
+          <th>Qty</th>
+          <th>Keterangan</th>
+        </tr>
+        <tr *ngFor="let x of item; let i = index; trackBy:trackByIndex">
+          <td>{{i+1}}</td>
+          <td>{{x.nama_barang}}</td>
+          <td>{{x.qty}}</td>
+          <td>{{x.keterangan}}</td>
+        </tr>
+      </table>
+      <!-- <div class="div_item" *ngFor="let x of item; let i = index; trackBy:trackByIndex">
+        <ion-item>
+          <ion-label stacked>Nama Barang</ion-label>
+          <ion-input type="text" class="nama_barang" value="{{x.nama_barang}}"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Qty</ion-label>
+          <ion-input type="text" class="qty" value="{{x.qty}}"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Keterangan</ion-label>
+          <ion-textarea rows="4" class="keterangan" value="{{x.keterangan}}"></ion-textarea>
+        </ion-item>
+      </div> -->
+    </div>
+
+  </div>
+
+  <!-- TAB STATUS -->
+  <div class="info" *ngIf="tab=='status'">
+    <div [ngClass]="{'log': i === jumlah_log,'log_inactive':i!==jumlah_log}" *ngFor="let y of tracking; let i = index; trackBy:trackByIndex">
+      <label class="log_status">{{y.status}}</label>
+      <label class="log_date">{{y.datetime}}</label>
+      <p class="log_p">{{y.detail}}</p>
+      <label *ngIf="y.status=='ON SHIPPING'" class="putih100">Container Number <br>{{container_number}}</label>
+      <div *ngIf="y.status=='DELIVERED'" class="img_log"><img src="{{base_url_image}}{{y.foto}}" imageViewer></div>
+      <!-- <div *ngIf="y.status=='DELIVERED'" class="img_log"><img src="{{base_url_image}}{{y.ktp}}" imageViewer></div> -->
+    </div>
+
+  </div>
+
+</div>
+</ion-content>

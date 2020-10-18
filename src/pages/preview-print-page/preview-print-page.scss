@@ -1,0 +1,62 @@
+page-preview-print-page {
+  .label_barcode{
+    text-align: center;
+    width: 100%;
+    border: 1px solid red;
+    font-size: 20px;
+  }
+  .mybarcode{
+    border: 1px solid #000;
+  }
+  .terms{
+    margin-top: 10px;
+  }
+  .terms ul{
+    margin-left: -20px;
+    font-weight: normal;
+  }
+  .title_barcode{
+    width: 100%;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  .subtitle_barcode{
+    width: 100%;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  .no_resi{
+    width: 100%;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+  .divider{
+    padding: 0px 5px;
+  }
+  .table_resi{
+
+  }
+  .table_resi tr{
+  }
+  .table_resi td{
+    padding: 5px;
+  }
+  .div_button{
+    float:left;
+    width:100%;
+  }
+  .btn{
+    width:48% !important;
+    float:left;
+    height:80px;
+  }
+}

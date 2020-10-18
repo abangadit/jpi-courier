@@ -1,0 +1,263 @@
+<ion-header>
+  <ion-navbar>
+    <div class="myheader">
+      <div class="judul_kiri">
+        Order
+      </div>
+      <div class="judul_kanan">
+        Hi, {{login_nama}} !
+      </div>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <form [formGroup]="formOrder" (ngSubmit)="create_order()"> -->
+  <!-- SENDER INFO -->
+  <ion-label padding class="txt_bold">Info Pengirim</ion-label>
+  <ion-row>
+    <!-- <ion-col col-6>
+      <ion-item>
+        <ion-label stacked>Tanggal</ion-label>
+        <ion-datetime displayFormat="YYYY-MM-DD" class="pengirim_tanggal" [(ngModel)]="pengirim_tanggal"></ion-datetime>
+      </ion-item>
+    </ion-col> -->
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Nama</ion-label>
+          <ion-input type="text" class="pengirim_nama" [(ngModel)]="pengirim_nama"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Telp</ion-label>
+          <ion-input type="number" class="pengirim_telp" [(ngModel)]="pengirim_telp"></ion-input>
+        </ion-item>
+      </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col col-12>
+        <ion-item>
+          <ion-label stacked>Passport</ion-label>
+          <ion-input type="text" class="pengirim_nama" [(ngModel)]="pengirim_passport"></ion-input>
+        </ion-item>
+      </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-12>
+      <ion-item>
+        <ion-label stacked>Negara</ion-label>
+        <ion-select interface="popover" (ionChange)="get_provinsi($event)" class="pengirim_negara" [(ngModel)]="pengirim_negara">
+          <ion-option>-Pilih</ion-option>
+          <ion-option *ngFor="let neg of data_negara" value="{{neg.id}}">{{neg.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-6 *ngIf="isMalaysia">
+      <ion-item>
+        <ion-label stacked>Negara Bagian</ion-label>
+        <ion-select interface="popover" (ionChange)="get_kota($event)" class="pengirim_provinsi" [(ngModel)]="pengirim_provinsi">
+          <ion-option>-Pilih</ion-option>
+          <ion-option *ngFor="let prov of data_provinsi" value="{{prov.provinsi_id}}">{{prov.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col col-6 *ngIf="!isMalaysia">
+      <ion-item>
+        <ion-label stacked *ngIf="!isMalaysia">Kota</ion-label>
+        <!-- <ion-label stacked *ngIf="!isMalaysia">Negara Bagian</ion-label> -->
+        <ion-select interface="popover" class="pengirim_kota" [(ngModel)]="pengirim_kota" >
+          <ion-option>-Pilih</ion-option>
+          <ion-option *ngFor="let kota of data_kota" value="{{kota.kota_id}}">{{kota.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-item>
+      <ion-label stacked>Alamat Detail</ion-label>
+      <ion-textarea rows="4" class="pengirim_alamat" [(ngModel)]="pengirim_alamat"></ion-textarea>
+    </ion-item>
+  </ion-row>
+  <!-- <ion-row>
+    <ion-item>
+      <ion-label stacked>Kodepos</ion-label>
+      <ion-input type="number" class="pengirim_kodepos" [(ngModel)]="pengirim_kodepos"></ion-input>
+    </ion-item>
+  </ion-row> -->
+  <!-- <ion-item>
+    <ion-label stacked>Telp</ion-label>
+    <ion-input type="number" class="pengirim_telp" [(ngModel)]="pengirim_telp"></ion-input>
+  </ion-item> -->
+
+  <!-- RECEIVER INFO -->
+  <ion-label padding class="txt_bold">Info Penerima</ion-label>
+  <ion-row>
+    <!-- <ion-col col-6>
+      <ion-item>
+        <ion-label stacked>Tanggal</ion-label>
+        <ion-datetime displayFormat="YYYY-MM-DD" class="penerima_tanggal" [(ngModel)]="penerima_tanggal"></ion-datetime>
+      </ion-item>
+    </ion-col> -->
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Nama</ion-label>
+          <ion-input type="text"  class="penerima_nama" [(ngModel)]="penerima_nama"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Telp</ion-label>
+          <ion-input type="number" class="penerima_telp" [(ngModel)]="penerima_telp"></ion-input>
+        </ion-item>
+      </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-12>
+      <ion-item>
+        <ion-label stacked>Negara</ion-label>
+        <ion-select interface="popover" (ionChange)="get_provinsi2($event)" class="penerima_negara" [(ngModel)]="penerima_negara">
+          <ion-option>-Pilih</ion-option>
+          <ion-option *ngFor="let neg of data_negara" value="{{neg.id}}">{{neg.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-6 *ngIf="!isMalaysia2">
+      <ion-item>
+        <ion-label stacked>Provinsi</ion-label>
+        <ion-select interface="popover" (ionChange)="get_kota2($event)" class="penerima_provinsi" [(ngModel)]="penerima_provinsi">
+          <ion-option>-Pilih</ion-option>
+          <ion-option *ngFor="let prov of data_provinsi2" value="{{prov.provinsi_id}}">{{prov.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col col-6>
+      <ion-item>
+        <ion-label stacked *ngIf="!isMalaysia2">Kota</ion-label>
+        <ion-label stacked *ngIf="isMalaysia2">Negara Bagian</ion-label>
+        <ion-select interface="popover" class="penerima_kota" [(ngModel)]="penerima_kota">
+          <ion-option>-Pilih</ion-option>
+          <ion-option *ngFor="let kota of data_kota2" value="{{kota.kota_id}}">{{kota.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-item>
+      <ion-label stacked>Alamat Detail</ion-label>
+      <ion-textarea rows="4" class="penerima_alamat" [(ngModel)]="penerima_alamat"></ion-textarea>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-item>
+      <ion-label stacked>Telp Alternatif</ion-label>
+      <ion-input type="tel" class="telp_alternatif" [(ngModel)]="telp_alternatif"></ion-input>
+    </ion-item>
+  </ion-row>
+  <!-- <ion-row>
+    <ion-item>
+      <ion-label stacked>Kodepos</ion-label>
+      <ion-input type="number" class="penerima_kodepos" [(ngModel)]="penerima_kodepos"></ion-input>
+    </ion-item>
+  </ion-row> -->
+  <br><br>
+  <!-- INFORMASI ISI BOX -->
+  <label class="lbl">Informasi Isi Box</label>
+
+  <div class="mycheck" *ngFor="let x of data_item; let i = index;">
+    <input type="checkbox" value="{{x.name}}" [(ngModel)]="items[i]">
+    <label>{{x.name}}</label>
+  </div>
+  <!-- <a class="btn" (click)="tambah_item()">Tambah Item + </a>
+  <div class="div_item" *ngFor="let item of jumlah_item; let i = index; trackBy:trackByIndex">
+    <label class="no_item">No.{{item.idx}}</label>
+    <select class="select_item" [(ngModel)]="nama_barang[i]">
+      <option selected>-Pilih Barang-</option>
+      <option *ngFor="let x of data_item" value="{{x.name}}">{{x.name}}</option>
+    </select>
+    <textarea rows="4" class="keterangan_item" [(ngModel)]="keterangan[i]" value="" placeholder="Keterangan"></textarea>
+  </div> -->
+    <!-- <input type="number" class="qty_item" [(ngModel)]="qty[i]" value="" placeholder="Qty"> -->
+    <!-- <ion-label padding>No.{{item.idx}}</ion-label>
+    <ion-item>
+      <ion-select interface="popover" class="" [(ngModel)]="nama_barang[i]">
+        <ion-option>-Pilih</ion-option>
+        <ion-option *ngFor="let x of data_item" value="{{x.name}}">{{x.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Qty</ion-label>
+      <ion-input type="number" class="qty" [(ngModel)]="qty[i]" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Keterangan</ion-label>
+      <ion-textarea rows="4" class="keterangan" [(ngModel)]="keterangan[i]" value=""></ion-textarea>
+    </ion-item> -->
+
+  <br><br>
+  <!-- CHECKLIST -->
+  <div *ngIf="tipe_paket=='box'">
+    <ion-label padding class="txt_bold">Ukuran Box</ion-label>
+    <ion-row radio-group  class="jenis_pengiriman" [(ngModel)]="box_id" *ngFor="let item of data_box;">
+      <ion-item>
+        <ion-label>{{item.name}}</ion-label>
+        <ion-radio value="{{item.id}}"></ion-radio>
+      </ion-item>
+    </ion-row>
+    <ion-item>
+      <ion-label stacked>Non-Size</ion-label>
+      <ion-textarea rows="1" class="non_size" [(ngModel)]="non_size"></ion-textarea>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label stacked>Panjang</ion-label>
+      <ion-input class="non_size" [(ngModel)]="panjang" type="number" placeholder="panjang"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Lebar</ion-label>
+      <ion-input class="non_size" [(ngModel)]="lebar" type="number" placeholder="lebar"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Tinggi</ion-label>
+      <ion-input class="non_size" [(ngModel)]="tinggi" type="number" placeholder="tinggi"></ion-input>
+    </ion-item> -->
+    <br><br>
+  </div>
+
+  <!-- BERAT PAKET -->
+  <div *ngIf="tipe_paket=='kilo'">
+    <ion-label padding class="txt_bold">Berat Total</ion-label>
+    <ion-item>
+      <ion-label stacked>Berat Total</ion-label>
+      <ion-input type="number" class="penerima_telp" [(ngModel)]="berat_total"></ion-input>
+    </ion-item>
+    <br><br>
+  </div>
+
+  <!-- CHECKLIST -->
+  <ion-label padding class="txt_bold">Jenis Pengiriman</ion-label>
+  <ion-row radio-group  class="jenis_pengiriman" [(ngModel)]="jenis_pengiriman">
+    <ion-item>
+      <ion-label>Reguler</ion-label>
+      <ion-radio value="reguler"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Express</ion-label>
+      <ion-radio value="express"></ion-radio>
+    </ion-item>
+  </ion-row>
+
+  <button ion-button block (click)="camera1()">Photo 1</button>
+  <button ion-button block (click)="camera2()">Photo 2</button>
+
+  <div class="info">
+    Please Turn On And Connect Phone To Bluetooth Printer Before Tap 'Create And Print Receipt'
+  </div>
+  <button ion-button block (click)="create_order()">Create and Print Receipt</button>
+  <!-- </form> -->
+
+
+</ion-content>

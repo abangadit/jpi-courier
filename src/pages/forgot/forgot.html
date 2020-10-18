@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <div class="myheader">
+      <div class="judul_kiri">
+        Forgot
+      </div>
+      <div class="judul_kanan">
+        Password
+      </div>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>Please insert email address to reset password</ion-list-header>
+    <!-- <ngx-barcode style="text-align:center;" [bc-value]="929283918291829" [bc-format]="codabar" [bc-element-type]="img" [bc-display-value]="true"></ngx-barcode> -->
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input type="text" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <button ion-button (click)="reset_password()" block>Reset Password</button>
+  </ion-list>
+</ion-content>

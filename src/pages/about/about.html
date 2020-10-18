@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <div class="myheader">
+      <div class="judul_kiri">
+        Update Order
+      </div>
+      <div class="judul_kanan">
+        Hi, {{login_nama}} !
+      </div>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2 class="title_biru" color="primary">Please Scan QR Code</h2>
+  <h3 class="subtitle">You Can find QR Code On The Package</h3>
+
+  <p>1. Scan QR Code on the package</p>
+  <p>2. You Will be enter to order detail</p>
+  <p>3. Update Order Status</p>
+
+  <div class="img_scan">
+    <img src="assets/imgs/img_hp_scan.png" class="img">
+  </div>
+
+  <button ion-button block (click)="scan()">Scan Now</button>
+
+  <form [formGroup]="form1" (ngSubmit)="cari()">
+    <input type="text" class="input_text" placeholder="Nomor Resi" formControlName="no_resi">
+    <button ion-button block >Update</button>
+  </form>
+</ion-content>

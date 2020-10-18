@@ -1,0 +1,133 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+.tabs-md .tab-button[aria-selected=true]{
+  background: #0171BE;
+  color: #fff;
+  font-size: 18px !important;
+}
+.header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+  background: none !important;
+}
+.toolbar-background-md{
+  background:url('../assets/imgs/header.png') no-repeat;
+  border: none !important;
+}
+.myheader{
+  width: 100%;
+  float: left;
+}
+.judul_kiri{
+  width: 50%;
+  float: left;
+  padding: 0px 0px 0px 10px;
+  color: #fff;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+.judul_kanan{
+  width: 50%;
+  float: left;
+  text-align: right;
+  padding: 0px 10px 0px 0px;
+  font-size: 17px;
+  text-transform: capitalize;
+}
+.text-center{
+  text-align: center;
+  width: 100%;
+}
+
+ion-modal.my-popup {
+  @media (min-height: 500px) {
+    ion-backdrop {
+      visibility: visible;
+    }
+  }
+
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $z-index-overlay;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  contain: strict;
+  .modal-wrapper {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 10px;
+    width: 80vw;
+    height: 60vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 0;
+    box-shadow: 0 16px 20px rgba(0,0,0,.4);
+    background: #00aa0e;
+    border: 1px solid #ffffff;
+  }
+}
+ion-modal.my-popup-2 {
+  @media (min-height: 500px) {
+    ion-backdrop {
+      visibility: visible;
+    }
+  }
+
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $z-index-overlay;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  contain: strict;
+  .modal-wrapper {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 10px;
+    width: 90vw;
+    height: 80vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 0;
+    box-shadow: 0 16px 20px rgba(0,0,0,.4);
+    background: #00aa0e;
+    border: 1px solid #ffffff;
+  }
+}
+.mycustomdialog{
+  border-radius: 5px;
+  background: #fff;
+}

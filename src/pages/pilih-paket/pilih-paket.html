@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <div class="myheader">
+      <div class="judul_kiri">
+        Pilih Paket
+      </div>
+      <div class="judul_kanan">
+
+      </div>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <!-- <a ion-button block (click)="pilih_kilo()">Paket Kilo</a>
+  <a ion-button block (click)="pilih_box()">Paket Box</a> -->
+  <div class="img_paket">
+    <img (click)="pilih_kilo()" src="assets/imgs/kilo.png">
+    <p>Paket Kilo</p>
+  </div>
+  <div class="img_paket">
+    <img (click)="pilih_box()" src="assets/imgs/box.png">
+    <p>Paket Box</p>
+  </div>
+  <ion-item *ngFor="let item of data_box" (tap)="select_box(item.id,item.name)">
+    {{item.name}}
+  </ion-item>
+
+</ion-content>

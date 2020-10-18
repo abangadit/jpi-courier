@@ -1,0 +1,15 @@
+<ion-tabs *ngIf="tipe=='none'">
+  <ion-tab [root]="tab1Root" tabTitle="Create Order" tabIcon=""></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="Update Order" tabIcon=""></ion-tab>
+  <ion-tab [root]="tab4Root" tabTitle="Container" tabIcon=""></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="Profile" tabIcon=""></ion-tab>
+</ion-tabs>
+<ion-tabs *ngIf="tipe=='pickup'">
+  <ion-tab [root]="tab1Root" tabTitle="Create Order" tabIcon=""></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="Profile" tabIcon=""></ion-tab>
+</ion-tabs>
+<ion-tabs *ngIf="tipe=='delivery'">
+  <ion-tab [root]="tab2Root" tabTitle="Update Order" tabIcon=""></ion-tab>
+  <!-- <ion-tab [root]="tab4Root" tabTitle="Container" tabIcon=""></ion-tab> -->
+  <ion-tab [root]="tab3Root" tabTitle="Profile" tabIcon=""></ion-tab>
+</ion-tabs>

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <div class="myheader">
+      <div class="judul_kiri">
+        Container
+      </div>
+      <div class="judul_kanan">
+        Hi, {{login_nama}} !
+      </div>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2 class="title_biru" color="primary">Please Scan QR Code</h2>
+  <h3 class="subtitle">You Can find QR Code On The Package</h3>
+
+  <p>1. Input Container Number</p>
+  <p>2. Next to go the scan page</p>
+  <p>3. Scan to update packae container number</p>
+
+  <div class="img_scan">
+    <img src="assets/imgs/img_hp_scan.png" class="img">
+  </div>
+
+  <input type="text" class="input_text" placeholder="Package Container Number" [(ngModel)]="container_number">
+  <button ion-button block (click)="scan()">Scan Now</button>
+
+  <input type="text" class="input_text" placeholder="Nomor Resi" [(ngModel)]="nomor_resi">
+  <button ion-button block (click)="cari()">Search</button>
+</ion-content>

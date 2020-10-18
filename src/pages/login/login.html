@@ -1,0 +1,19 @@
+<ion-content class="main_login">
+<img src="assets/imgs/logo.png" class="logo_header">
+
+<div>
+  <div class="subheader_login">
+    Login To Enter Courier App
+  </div>
+
+  <div class="form_login">
+    <p>Login</p>
+    <form [formGroup]="formLogin" (ngSubmit)="goToMain()">
+      <input type="text" class="input_text" placeholder="Username" formControlName="username">
+      <input type="password" class="input_text" placeholder="Password" formControlName="password">
+      <div class="text-center" (click)="goToForgot()">Forgot Password</div>
+      <button ion-button block>Login</button>
+    </form>
+  </div>
+</div>
+</ion-content>

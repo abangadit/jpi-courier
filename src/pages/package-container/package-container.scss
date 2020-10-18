@@ -1,0 +1,30 @@
+page-package-container {
+  .input_text{
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .title_biru{
+    text-align: center;
+    color: #0171BE;
+  }
+  .subtitle{
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 30px !important;
+  }
+  p{
+    text-align: center;
+    color: #2f2f2f;
+    line-height: 10px;
+  }
+  .img_scan{
+    height: 220px;
+    text-align: center;
+  }
+  .img{
+    height: 100%;
+  }
+}

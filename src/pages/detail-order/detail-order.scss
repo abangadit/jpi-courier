@@ -1,0 +1,168 @@
+page-detail-order {
+  .segment-md .segment-button.activated, .segment-md .segment-button.segment-activated{
+    background: #0e70c4;
+    color: #fff;
+  }
+  .ion-segment{
+    border: 1px solid #dadada !important;
+    border-bottom-style:none !important;
+  }
+  .receipt_title{
+    float: left;
+    width: 100%;
+    font-weight: 500;
+    margin: 10px 0px;
+  }
+  .receipt_number{
+    width: 100%;
+    font-size: 24px;
+    color:#0e70c4;
+    text-align: center;
+    float: left;
+    margin: 3px 0px;
+  }
+  .order_date{
+    width: 100%;
+    float: left;
+    color: #808080;
+    margin: 10px 0px;
+  }
+  .laststatus_title{
+    font-weight: 500;
+    float: left;
+    width: 30%;
+    margin: 3px 0px;
+  }
+  .laststatus{
+    float: left;
+    width: 70%;
+    color: #0e70c4;
+    margin: 3px 0px;
+  }
+  .setstatus_label{
+    width: 100%;
+    float: left;
+    color: #808080;
+    margin: 3px 0px;
+    text-align: center;
+  }
+  .sender_info{
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    float: left;
+    padding: 12px;
+    margin: 10px 0px;
+    width: 100%;
+  }
+  .label_left{
+    font-weight: 500;
+    float: left;
+    width: 50%;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  .label_right{
+    float: right;
+    width: 50%;
+    text-align: right;
+    margin-bottom: 5px;
+  }
+  .label_block{
+    width: 100%;
+    float: left;
+  }
+  .package_info{
+    border:1px solid #dadada;
+    border-radius: 10px;
+    float: left;
+    width: 100%;
+    padding: 10px;
+  }
+  .div_item_main{
+    border:1px solid #dadada;
+    border-radius: 10px;
+    padding: 2px;
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .div_item{
+    border-bottom: 1px solid #dadada;
+    padding: 2px;
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .lbl{
+    width: 50%;
+    padding: 10px;
+    float: left;
+    font-size: 18px;
+  }
+  .log{
+    padding: 10px 20px;
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background: #07c9f5;
+    color: #fff !important;
+    border-radius: 4px;
+  }
+  .log_inactive{
+    padding: 10px 20px;
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background: #696565;
+    color: #fff !important;
+    border-radius: 4px;
+  }
+  .log_status{
+    font-weight: 500;
+    font-size: 13px;
+    float: left;
+  }
+  .log_date{
+    float: left;
+    width: 100%;
+    font-size: 11px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .log_p{
+    font-size: 13px;
+    float: left;
+    width: 100%;
+  }
+  .mytable{
+    float: left;
+    width: 95%;
+    margin: 8px;
+  }
+  .mytable th{
+    border: 1px solid #dadada;
+    padding: 10px;
+  }
+  .mytable td{
+    border: 1px solid #dadada;
+    text-align: center;
+    padding: 10px;
+  }
+  .img_log{
+    width: 100%;
+    float: left;
+    text-align: center;
+  }
+  .img_log img{
+    height: 100px;
+  }
+  .putih100{
+    width: 100%;
+    float: left;
+    color: #fff;
+  }
+}

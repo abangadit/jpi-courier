@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <div class="myheader">
+      <div class="judul_kiri">
+        Profile
+      </div>
+      <div class="judul_kanan">
+        Hi, {{login_nama}} !
+      </div>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>Your Profile Information</ion-list-header>
+    <!-- <ngx-barcode style="text-align:center;" [bc-value]="929283918291829" [bc-format]="codabar" [bc-element-type]="img" [bc-display-value]="true"></ngx-barcode> -->
+    <ion-item>
+      <ion-label stacked>Nama</ion-label>
+      <ion-input type="text" [(ngModel)]="nama"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input type="text" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Phone</ion-label>
+      <ion-input type="text" [(ngModel)]="telp"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Password (kosongkan jika tidak ingin merubah)</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+    <button ion-button (click)="update_profile()" block>Edit Profile</button>
+
+
+    <button ion-button (click)="logout()" block>Logout</button>
+  </ion-list>
+</ion-content>

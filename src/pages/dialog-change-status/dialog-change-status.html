@@ -1,0 +1,27 @@
+<ion-content class="mycustomdialog" padding>
+  <label class="lbl">Change Package Status</label>
+  <ion-list>
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select [(ngModel)]="status" interface="popover">
+        <ion-option value="RECEIVED JPI">RECEIVED JPI</ion-option>
+        <ion-option value="ON SHIPPING">ON SHIPPING</ion-option>
+        <ion-option value="UNLOADING OFFICE HQ">UNLOADING OFFICE HQ</ion-option>
+        <ion-option value="UNLOADING OFFICE BRANCH">UNLOADING OFFICE BRANCH</ion-option>
+        <ion-option value="DELIVERED">DELIVERED</ion-option>
+        <ion-option value="CANCEL">CANCEL</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Detail</ion-label>
+      <ion-textarea rows="4" class="pengirim_alamat" [(ngModel)]="detail"></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <button *ngIf="status=='DELIVERED' && !foto_sudah_diupload" ion-button block (click)="presentActionSheet('foto')">Upload Foto</button>
+  <button class="btn-disabled" *ngIf="status=='DELIVERED' && foto_sudah_diupload" ion-button block (click)="presentActionSheet('foto')">Sudah Diupload</button>
+  <!-- <button *ngIf="status=='DELIVERED' && !ktp_sudah_diupload" ion-button block (click)="presentActionSheet('ktp')">Upload STTB</button>
+  <button class="btn-disabled" *ngIf="status=='DELIVERED' && ktp_sudah_diupload" ion-button block (click)="presentActionSheet('ktp')">Sudah Diupload</button> -->
+  <br>
+  <button ion-button block (click)="cek_update_status()">Upate Status</button>
+  <button ion-button block (click)="close()">Close</button>
+</ion-content>

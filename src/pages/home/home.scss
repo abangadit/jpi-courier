@@ -1,0 +1,76 @@
+page-home {
+  .item-input ion-input, .item-input ion-textarea{
+    font-size: 13px;
+  }
+  ion-select{
+    max-width: 100% !important;
+    width: 100% !important;
+    font-size: 13px;
+  }
+  .div_item{
+    border:1px solid #dadada;
+    padding: 10px;
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .txt_bold{
+    font-size: 18px;
+  }
+  .lbl{
+    width: 50%;
+    padding: 10px;
+    float: left;
+    font-size: 18px;
+  }
+  .btn{
+    width: 50%;
+    padding: 10px;
+    float: left;
+    background: #0171BE;
+    color: #FFF;
+    font-size: 14px;
+  }
+  .info{
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #dadada;
+    float: left;
+    color: #2f2f2f;
+  }
+  .no_item{
+    float: left;
+    width: 10%;
+    height: 30px;
+  }
+  .select_item{
+    float: left;
+    width: 60%;
+    background: #fff;
+    border-radius: 0px;
+    height: 30px;
+  }
+  .qty_item{
+    float: left;
+    width: 30%;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    text-align: center;
+    height: 30px;
+  }
+  .keterangan_item{
+    float: left;
+    width: 100%;
+    border: 1px solid #dadada;
+    margin-top: 10px;
+    border-radius: 4px;
+  }
+  .mycheck{
+    width: 100%;
+    float: left;
+    margin: 4px 0px;
+  }
+  .mycheck label{
+    margin: 0px 0px 0px 10px;
+  }
+}

@@ -1,0 +1,140 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <div class="myheader">
+      <div class="judul_kiri">
+        Print
+      </div>
+      <div class="judul_kanan">
+
+      </div>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div id="mybarcode" class="mybarcode">
+    <div class="title_barcode">JPI</div>
+    <div class="subtitle_barcode">Jakarta Cargo (m) Sdn.Bhd</div>
+    <ngx-barcode style="text-align:center;" id="ngxbarcode" class="ngxbarcode" [bc-value]="value_barcode" [bc-element-type]="canvas" [bc-display-value]="false"></ngx-barcode>
+    <div class="no_resi">{{no_resi}}</div>
+    <div class="info_resi" style="padding:0px 20px;text-transform: uppercase;font-weight:bold">
+      <table class="table_resi">
+        <tr>
+          <td class="td_title">Pengirim</td>
+          <td>: {{pengirim}}</td>
+        </tr>
+        <tr>
+          <td class="td_title">Kontak</td>
+          <td>: {{pengirim_telp}}</td>
+        </tr>
+        <tr>
+          <td class="td_title">Tanggal</td>
+          <td>: {{tanggal}}</td>
+        </tr>
+        <tr>
+          <td class="td_title">Servis</td>
+          <td>: {{servis}}</td>
+        </tr>
+        <tr *ngIf="tipe_paket=='kilo'">
+          <td class="td_title">Berat</td>
+          <td>: {{berat_total}} KG</td>
+        </tr>
+        <tr *ngIf="tipe_paket=='box'">
+          <td class="td_title">Box</td>
+          <td>: {{box_name}}</td>
+        </tr>
+      </table>
+      <div class="divider">=================================</div>
+      <table class="table_resi">
+        <tr>
+          <td class="td_title">Penerima</td>
+          <td>: {{penerima}}</td>
+        </tr>
+        <tr>
+            <td class="td_title">Kontak</td>
+            <td>: {{penerima_telp}}</td>
+        </tr>
+        <tr>
+          <td class="td_title">Provinsi</td>
+          <td>: {{provinsi_tujuan}}</td>
+        </tr>
+        <tr>
+          <td class="td_title">Kota</td>
+          <td>: {{kota_tujuan}}</td>
+        </tr>
+        <tr>
+          <td class="td_title">Tujuan</td>
+          <td>: {{alamat_tujuan}}</td>
+        </tr>
+        <tr>
+          <td class="td_title">Telp Alternatif</td>
+          <td>: {{telp_alternatif}}</td>
+        </tr>
+      </table>
+      <div class="divider">=================================</div>
+      <table class="table_resi" *ngIf="harga_show">
+        <tr>
+          <td class="td_title">Biaya</td>
+          <td>: {{harga}}</td>
+        </tr>
+        <tr>
+          <td class="td_title">Service Charge</td>
+          <td>: {{service_charge}}</td>
+        </tr>
+        <tr *ngIf="isAgen">
+          <td class="td_title">{{agen}}</td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td class="td_title">Addtional Fee</td>
+          <td>: {{tambahan}}</td>
+        </tr>
+        <tr>
+          <td class="td_title">Total</td>
+          <td>: {{harga_total}}</td>
+        </tr>
+      </table>
+      <div class="terms" *ngIf="harga_show">
+        <h3>Terma Dan Kondisi</h3>
+        <ul>
+          <li>
+            Jakarta Cargo (M) Sdb Bhd tidak bertanggungjawab terhadap barang-barang yang dilarang Kerajaan Malaysia dan Pemerintar Indonesia seperti : penyelundupan senjatai api, obat-obat terlarang, dadah, mesin, motor dan barang kawalan (gula,tepung,minyak,beras,dll)
+          </li>
+          <li>
+            Jakarta Carga (M) Sdn Bhd tidak menerima pengiriman berupa perhiasan berharga, Emas, berlian, uang dsb.
+          </li>
+          <li>
+            Jakarta Cargo (M) Sdn Bhd tidak mengganti barang-barang elektronik yang rosak, pecah, seperti TV, Monitor+PC, Handphone, pinggan, gelas dll. (Risiko ditanggung pengirim).
+          </li>
+          <li>
+            Jakarta Cargo (M) Sdb Bhd tidak mengganti barang-barang yang tusak karena bencana alam(Force Majeur) seperti gempa bumi, banjir dan lain-lain
+          </li>
+          <li>
+            Penggantian atas kehilangan barang adalah sebesar maximum RM 300.00 per-kotak di luat kos pengiriman
+          </li>
+          <li>
+            Penggantian kerugian atas kehilangan & kerosakan barang maximun 3 bulan dari tanggal resit
+          </li>
+        </ul>
+      </div>
+      <br><br><br><br><br><br>
+    </div>
+  </div>
+  <button ion-button block (click)="list2()">Choose Printer</button>
+  <ion-item *ngFor="let item of printerList2" (tap)="select_printer2(item)">
+    {{item}}
+  </ion-item>
+  <br><br><br>
+  <!-- <button ion-button block (click)="printSomeImage()">Print Debug</button> -->
+  <!-- <button ion-button block (click)="printMyBarcode()">Print</button> -->
+  <div class="div_button">
+    <button ion-button (click)="show_harga()" class="btn">Show / Hide Harga</button>
+    <button ion-button (click)="print3()" class="btn">Print</button>
+    <button ion-button (click)="done()" class="btn">DONE</button>
+    <button ion-button (click)="duplicate_order()" class="btn">Duplicate Order</button>
+  </div>
+  <!-- <button ion-button block (click)="print_harga()">Print Dengan Harga</button> -->
+  <!-- <button ion-button block (click)="disconnect_yuk()">Disconnect</button> -->
+
+</ion-content>
