@@ -47,7 +47,7 @@
     <ion-col col-12>
       <ion-item>
         <ion-label stacked>Negara</ion-label>
-        <ion-select interface="popover" (ionChange)="get_provinsi($event)" class="pengirim_negara" [(ngModel)]="pengirim_negara">
+        <ion-select interface="action-sheet" (ionChange)="get_provinsi($event)" class="pengirim_negara" [(ngModel)]="pengirim_negara">
           <ion-option>-Pilih</ion-option>
           <ion-option *ngFor="let neg of data_negara" value="{{neg.id}}">{{neg.name}}</ion-option>
         </ion-select>
@@ -58,7 +58,7 @@
     <ion-col col-6 *ngIf="isMalaysia">
       <ion-item>
         <ion-label stacked>Negara Bagian</ion-label>
-        <ion-select interface="popover" (ionChange)="get_kota($event)" class="pengirim_provinsi" [(ngModel)]="pengirim_provinsi">
+        <ion-select interface="action-sheet" (ionChange)="get_kota($event)" class="pengirim_provinsi" [(ngModel)]="pengirim_provinsi">
           <ion-option>-Pilih</ion-option>
           <ion-option *ngFor="let prov of data_provinsi" value="{{prov.provinsi_id}}">{{prov.name}}</ion-option>
         </ion-select>
@@ -68,7 +68,7 @@
       <ion-item>
         <ion-label stacked *ngIf="!isMalaysia">Kota</ion-label>
         <!-- <ion-label stacked *ngIf="!isMalaysia">Negara Bagian</ion-label> -->
-        <ion-select interface="popover" class="pengirim_kota" [(ngModel)]="pengirim_kota" >
+        <ion-select interface="action-sheet" class="pengirim_kota" [(ngModel)]="pengirim_kota" >
           <ion-option>-Pilih</ion-option>
           <ion-option *ngFor="let kota of data_kota" value="{{kota.kota_id}}">{{kota.name}}</ion-option>
         </ion-select>
@@ -118,7 +118,7 @@
     <ion-col col-12>
       <ion-item>
         <ion-label stacked>Negara</ion-label>
-        <ion-select interface="popover" (ionChange)="get_provinsi2($event)" class="penerima_negara" [(ngModel)]="penerima_negara">
+        <ion-select interface="action-sheet" (ionChange)="get_provinsi2($event)" class="penerima_negara" [(ngModel)]="penerima_negara">
           <ion-option>-Pilih</ion-option>
           <ion-option *ngFor="let neg of data_negara" value="{{neg.id}}">{{neg.name}}</ion-option>
         </ion-select>
@@ -129,7 +129,7 @@
     <ion-col col-6 *ngIf="!isMalaysia2">
       <ion-item>
         <ion-label stacked>Provinsi</ion-label>
-        <ion-select interface="popover" (ionChange)="get_kota2($event)" class="penerima_provinsi" [(ngModel)]="penerima_provinsi">
+        <ion-select interface="action-sheet" (ionChange)="get_kota2($event)" class="penerima_provinsi" [(ngModel)]="penerima_provinsi">
           <ion-option>-Pilih</ion-option>
           <ion-option *ngFor="let prov of data_provinsi2" value="{{prov.provinsi_id}}">{{prov.name}}</ion-option>
         </ion-select>
@@ -139,7 +139,7 @@
       <ion-item>
         <ion-label stacked *ngIf="!isMalaysia2">Kota</ion-label>
         <ion-label stacked *ngIf="isMalaysia2">Negara Bagian</ion-label>
-        <ion-select interface="popover" class="penerima_kota" [(ngModel)]="penerima_kota">
+        <ion-select interface="action-sheet" class="penerima_kota" [(ngModel)]="penerima_kota">
           <ion-option>-Pilih</ion-option>
           <ion-option *ngFor="let kota of data_kota2" value="{{kota.kota_id}}">{{kota.name}}</ion-option>
         </ion-select>
@@ -158,6 +158,12 @@
       <ion-input type="tel" class="telp_alternatif" [(ngModel)]="telp_alternatif"></ion-input>
     </ion-item>
   </ion-row>
+  <ion-row>
+    <ion-item>
+      <ion-label stacked>Informasi isi box (pisahkan dengan ; )</ion-label>
+      <ion-textarea rows="4" class="penerima_alamat" [(ngModel)]="isi_box"></ion-textarea>
+    </ion-item>
+  </ion-row>
   <!-- <ion-row>
     <ion-item>
       <ion-label stacked>Kodepos</ion-label>
@@ -166,12 +172,11 @@
   </ion-row> -->
   <br><br>
   <!-- INFORMASI ISI BOX -->
-  <label class="lbl">Informasi Isi Box</label>
 
-  <div class="mycheck" *ngFor="let x of data_item; let i = index;">
+  <!-- <div class="mycheck" *ngFor="let x of data_item; let i = index;">
     <input type="checkbox" value="{{x.name}}" [(ngModel)]="items[i]">
     <label>{{x.name}}</label>
-  </div>
+  </div> -->
   <!-- <a class="btn" (click)="tambah_item()">Tambah Item + </a>
   <div class="div_item" *ngFor="let item of jumlah_item; let i = index; trackBy:trackByIndex">
     <label class="no_item">No.{{item.idx}}</label>
@@ -238,7 +243,7 @@
   </div>
 
   <!-- CHECKLIST -->
-  <ion-label padding class="txt_bold">Jenis Pengiriman</ion-label>
+  <!-- <ion-label padding class="txt_bold">Jenis Pengiriman</ion-label>
   <ion-row radio-group  class="jenis_pengiriman" [(ngModel)]="jenis_pengiriman">
     <ion-item>
       <ion-label>Reguler</ion-label>
@@ -248,7 +253,7 @@
       <ion-label>Express</ion-label>
       <ion-radio value="express"></ion-radio>
     </ion-item>
-  </ion-row>
+  </ion-row> -->
 
   <button ion-button block (click)="camera1()">Photo 1</button>
   <button ion-button block (click)="camera2()">Photo 2</button>

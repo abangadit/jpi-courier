@@ -35,7 +35,7 @@ export class HomePage {
   data_provinsi;data_kota;data_kecamatan;data_negara;
   data_provinsi2;data_kota2;data_kecamatan2;
 
-  tipe_paket;box_id;box_name;
+  tipe_paket;box_id;box_name;isi_box;
 
   //field form//
   private formOrder: FormGroup;
@@ -419,7 +419,7 @@ export class HomePage {
     //   content: "Please wait..."
     // });
     // this.loader.present();
-    var link = this.serv.base_url+'masterdata/t_provinsi/negara_id/'+val;
+    var link = this.serv.base_url+'masterdata/getprovinsi/t_provinsi/negara_id/'+val;
     let body = new FormData;
     let headers = new Headers();
     headers.append("Authorization",this.token);
@@ -749,25 +749,32 @@ export class HomePage {
     });
   }
   create_orderx(){
-    let new_ar_item = [];
-    console.log(this.items);
-    for(let i=0;i<this.items.length;i++){
-      if(this.items[i]){
-        console.log(this.data_item[i]);
-        var eachItem = {
-            "nama_barang": this.nama_barang[i],
-            //"berat": this.berat[x],
-            //"qty":this.qty[x],
-            "qty":1,
-            "keterangan":"-"
-        };
-        new_ar_item.push(eachItem);
-      }
-    }
-    console.log(new_ar_item);
+    console.log(this.isi_box);
+    let spl = this.isi_box.split(";");
+    console.log(spl);
+
+    // let new_ar_item = [];
+    // console.log(this.items);
+    // for(let i=0;i<this.items.length;i++){
+    //   if(this.items[i]){
+    //     console.log(this.data_item[i]);
+    //     var eachItem = {
+    //         "nama_barang": this.nama_barang[i],
+    //         //"berat": this.berat[x],
+    //         //"qty":this.qty[x],
+    //         "qty":1,
+    //         "keterangan":"-"
+    //     };
+    //     new_ar_item.push(eachItem);
+    //   }
+    // }
+    // console.log(new_ar_item);
   }
   create_order(){
     this.obj = [];
+    console.log(this.isi_box);
+    let spl = this.isi_box.split(";");
+    console.log(spl);
     // for(let x = 0;x<this.jumlah_item.length;x++){
     //   var eachItem = {
     //        "nama_barang": this.nama_barang[x],
@@ -778,11 +785,10 @@ export class HomePage {
     //    };
     //    this.obj.push(eachItem);
     // }
-    for(let i=0;i<this.items.length;i++){
-      if(this.items[i]){
-        console.log(this.data_item[i]);
+    for(let i=0;i<spl.length;i++){
+      if(spl[i]){
         var eachItem = {
-            "nama_barang": this.data_item[i].name,
+            "nama_barang": spl[i],
             //"berat": this.berat[x],
             //"qty":this.qty[x],
             "qty":1,
@@ -791,7 +797,8 @@ export class HomePage {
         this.obj.push(eachItem);
       }
     }
-    this.hitung_total();
+    console.log(this.obj);
+    //this.hitung_total();
   }
   get_id(obj,id){
     for(let x = 0;x<obj.length;x++){
