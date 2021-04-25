@@ -164,6 +164,17 @@
       <ion-textarea rows="4" class="penerima_alamat" [(ngModel)]="isi_box"></ion-textarea>
     </ion-item>
   </ion-row>
+  <ion-row>
+    <ion-col col-12>
+      <ion-item>
+        <ion-label stacked>Packing</ion-label>
+        <ion-select interface="action-sheet" class="penerima_negara" [(ngModel)]="packing">
+          <ion-option>-Pilih</ion-option>
+          <ion-option *ngFor="let neg of data_item" value="{{neg.id}}#{{neg.name}}#{{neg.price}}">{{neg.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
   <!-- <ion-row>
     <ion-item>
       <ion-label stacked>Kodepos</ion-label>

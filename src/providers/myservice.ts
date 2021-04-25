@@ -30,6 +30,6 @@ export class Myservice {
               rev2 += ',';
           }
       }
-      return 'RM' + rev2.split('').reverse().join('') + '';
+      return '' + rev2.split('').reverse().join('') + '';
   }
 }

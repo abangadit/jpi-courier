@@ -89,6 +89,8 @@ export class HomePage {
 
   lastImage;bukti1;foto;isUploaded;bukti2;
 
+  packing;
+
   constructor(
     public http: Http,
     public appCtrl: App,
@@ -139,7 +141,7 @@ export class HomePage {
     this.storage.get('token').then((val) => {
       this.token = val;
       this.get_negara();
-      this.get_item();
+      this.get_packing();
       this.get_box();
 
       if(this.penerima_kota){
@@ -196,7 +198,9 @@ export class HomePage {
   public takePicture(sourceType,enumx) {
     // Create options for the Camera Dialog
     var options = {
-      quality: 100,
+      quality: 30,
+      targetWidth: 800,
+      targetHeight: 800,
       sourceType: sourceType,
       saveToPhotoAlbum: false,
       correctOrientation: true
@@ -292,8 +296,8 @@ export class HomePage {
       console.log(err);
     });
   }
-  get_item(){
-    var link = this.serv.base_url+'masterdata/t_item';
+  get_packing(){
+    var link = this.serv.base_url+'masterdata/t_packing';
     let body = new FormData;
     let headers = new Headers();
     headers.append("Authorization",this.token);
@@ -306,9 +310,6 @@ export class HomePage {
       if(this.loader){ this.loader.dismiss(); this.loader = null; }
       if(data.status=="Success"){
         this.data_item = data.data;
-        for(let x = 0;x<this.data_item.length;x++){
-          this.items[x] = false;
-        }
       }else{
         this.toast = this.toastCtrl.create({
           message: data.message,
@@ -798,7 +799,7 @@ export class HomePage {
       }
     }
     console.log(this.obj);
-    //this.hitung_total();
+    this.hitung_total();
   }
   get_id(obj,id){
     for(let x = 0;x<obj.length;x++){
@@ -923,6 +924,8 @@ export class HomePage {
 
             image_1: this.bukti1,
             image_2: this.bukti2,
+
+            packing: this.packing,
            });
             profileModal.onDidDismiss(data => {
               console.log(data);

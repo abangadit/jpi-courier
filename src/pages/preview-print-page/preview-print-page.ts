@@ -78,6 +78,8 @@ export class PreviewPrintPage {
   PrintData:any;
   harga_show = false;
 
+  packing_price;
+
   constructor(
     public _zone: NgZone,
     public http: Http,
@@ -149,6 +151,8 @@ export class PreviewPrintPage {
     this.agen = navParams.get("agen");
     this.telp_alternatif = navParams.get("telp_alternatif");
 
+    this.packing_price = navParams.get("packing_price");
+
     console.log("================");
     console.log(this.navParams);
     console.log("================");
@@ -173,7 +177,7 @@ export class PreviewPrintPage {
     // this.kota_tujuan    = "Bogor";
 
 
-    this.harga_total = this.serv.toRp(parseInt(this.harga)+parseInt(this.service_charge)+parseInt(this.tambahan));
+    this.harga_total = this.serv.toRp(parseInt(this.harga)+parseInt(this.service_charge)+parseInt(this.tambahan)+parseInt(this.packing_price));
     this.harga = this.serv.toRp(this.harga);
     this.service_charge = this.serv.toRp(this.service_charge);
     this.tambahan = this.serv.toRp(this.tambahan);

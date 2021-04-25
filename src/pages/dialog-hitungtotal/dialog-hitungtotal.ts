@@ -76,6 +76,10 @@ export class DialogHitungtotal {
 
   bukti1;bukti2;
 
+  packing = 0;
+  packing_price = 0;
+  packing_name;
+
   constructor(
     public http: Http,
     public appCtrl: App,
@@ -149,6 +153,13 @@ export class DialogHitungtotal {
     this.bukti1 = this.navParams.get("image_1");
     this.bukti2 = this.navParams.get("image_2");
 
+    var pak             = this.navParams.get("packing");
+    console.log("packing info");
+    console.log(pak);
+    this.packing        = pak.split("#")[0];
+    this.packing_name   = pak.split("#")[1];
+    this.packing_price  = pak.split("#")[2];
+
     //this.service_charge = (25/100)*this.navParams.get("total");
 
     console.log("================");
@@ -157,7 +168,7 @@ export class DialogHitungtotal {
 
     setTimeout(()=>{    //<<<---    using ()=> syntax
     if(this.loader){ this.loader.dismiss(); this.loader = null; }
-      this.total_all = parseInt(this.total)+this.service_charge+this.tambahan;
+      this.total_all = parseInt(this.total)+parseInt(this.packing_price.toString())+parseInt(this.service_charge.toString())+parseInt(this.tambahan.toString());
       if(this.non_size!=""){
         this.total = 0;
         this.service_charge = 0;
@@ -169,21 +180,27 @@ export class DialogHitungtotal {
   hitung(val) {
    console.log("hitung"+val);
    if(val)
-   this.total_all = this.tambahan+parseInt(val);
-   this.total_all += parseFloat(this.service_charge.toString());
+   //this.total_all = this.tambahan+parseInt(val);
+   this.total_all = parseInt(this.packing_price.toString())+parseInt(this.service_charge.toString())+parseInt(this.tambahan.toString());
+
+   this.total_all += parseFloat(val);
 
 
   }
   hitung1(val) {
    console.log("hitung 1"+val);
    if(val)
-   this.total_all = parseInt(this.total)+parseInt(val);
-   this.total_all += parseFloat(this.service_charge.toString());
+   //this.total_all = parseInt(this.total)+parseInt(val);
+   this.total_all = parseInt(this.total)+parseInt(this.packing_price.toString())+parseInt(this.service_charge.toString());
+
+   this.total_all += parseFloat(val);
   }
   hitung2(val) {
    console.log("hitung 2"+val);
    if(val)
-   this.total_all = parseInt(this.total)+parseFloat(this.tambahan.toString())+parseInt(val);
+   this.total_all = parseInt(this.total)+parseInt(this.packing_price.toString())+parseInt(this.tambahan.toString());
+
+   this.total_all += parseInt(val);
   }
   setKomisi(val){
     this.isAgen = true;
@@ -270,6 +287,7 @@ export class DialogHitungtotal {
         text: 'Yes',
         role: 'yes',
         handler: () => {
+            //this.process_create_order_debug();
             this.process_create_order();
         }
     }]
@@ -307,6 +325,10 @@ export class DialogHitungtotal {
     valueToPush['tambahan'] = this.tambahan.toString();
     valueToPush['agen'] = this.selected_agen;
     valueToPush['komisi'] = this.komisi;
+
+    valueToPush['packing']        = this.packing;
+    valueToPush['packing_name']   = this.packing_name;
+    valueToPush['packing_price']  = this.packing_price;
     if(this.tipe_paket=="box"){
       valueToPush['box_id'] = this.box_id;
       valueToPush['non_size'] = this.non_size;
@@ -367,6 +389,10 @@ export class DialogHitungtotal {
     body.append('image_1',this.bukti1);
     body.append('image_2',this.bukti2);
 
+    body.append('packing',this.packing.toString());
+    body.append('packing_name',this.packing_name);
+    body.append('packing_price',this.packing_price.toString());
+
     let headers = new Headers();
     headers.append("Authorization",this.token);
     let options = new RequestOptions({ headers: headers });
@@ -419,7 +445,11 @@ export class DialogHitungtotal {
             kota_tujuan:this.kota_tujuan,
             isAgen:this.isAgen,
             telp_alternatif:this.telp_alternatif,
-            non_size:this.non_size
+            non_size:this.non_size,
+
+            packing:this.packing,
+            packing_name:this.packing_name,
+            packing_price:this.packing_price,
           };
         }else{
           this.param = {
@@ -459,7 +489,11 @@ export class DialogHitungtotal {
             agen:this.agen[agen].kode,
             isAgen:this.isAgen,
             telp_alternatif:this.telp_alternatif,
-            non_size:this.non_size
+            non_size:this.non_size,
+
+            packing:this.packing,
+            packing_name:this.packing_name,
+            packing_price:this.packing_price,
           };
         }
 

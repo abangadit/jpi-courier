@@ -19,6 +19,7 @@
   </ion-list>
   <button *ngIf="status=='DELIVERED' && !foto_sudah_diupload" ion-button block (click)="presentActionSheet('foto')">Upload Foto</button>
   <button class="btn-disabled" *ngIf="status=='DELIVERED' && foto_sudah_diupload" ion-button block (click)="presentActionSheet('foto')">Sudah Diupload</button>
+  <img class="btn-disabled" *ngIf="status=='DELIVERED' && foto_sudah_diupload" src="https://tracker.jpicargo.com/uploads/{{foto_file}}">
   <!-- <button *ngIf="status=='DELIVERED' && !ktp_sudah_diupload" ion-button block (click)="presentActionSheet('ktp')">Upload STTB</button>
   <button class="btn-disabled" *ngIf="status=='DELIVERED' && ktp_sudah_diupload" ion-button block (click)="presentActionSheet('ktp')">Sudah Diupload</button> -->
   <br>

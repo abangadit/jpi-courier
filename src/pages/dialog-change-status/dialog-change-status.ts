@@ -181,7 +181,9 @@ export class DialogChangeStatus {
   public takePicture(sourceType) {
   // Create options for the Camera Dialog
   var options = {
-    quality: 100,
+    quality: 30,
+    targetWidth: 800,
+    targetHeight: 800,
     sourceType: sourceType,
     saveToPhotoAlbum: false,
     correctOrientation: true
