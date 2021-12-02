@@ -83,7 +83,7 @@
           <td>: {{service_charge}}</td>
         </tr>
         <tr *ngIf="isAgen">
-          <td class="td_title">{{agen}}</td>
+          <td class="td_title">Agen : {{agen}}</td>
           <td> </td>
         </tr>
         <tr>
@@ -101,8 +101,8 @@
       </table>
       <div class="terms" *ngIf="harga_show">
         <h3>CAll CENTER : +62-8111-0500-777</h3><hr>
-        <h3>Terma Dan Kondisi</h3>
-        <ul>
+        <h5>*terma dan syarat sila rujuk kepada kotak rasmi JPI - Jakarta Cargo</h5>
+        <!-- <ul>
           <li>
             Jakarta Cargo (M) Sdb Bhd tidak bertanggungjawab terhadap barang-barang yang dilarang Kerajaan Malaysia dan Pemerintar Indonesia seperti : penyelundupan senjatai api, obat-obat terlarang, dadah, mesin, motor dan barang kawalan (gula,tepung,minyak,beras,dll)
           </li>
@@ -121,7 +121,7 @@
           <li>
             Penggantian kerugian atas kehilangan & kerosakan barang maximun 3 bulan dari tanggal resit
           </li>
-        </ul>
+        </ul> -->
       </div>
       <br><br><br><br><br><br>
     </div>
@@ -136,6 +136,7 @@
   <div class="div_button">
     <button ion-button (click)="show_harga()" class="btn">Show / Hide Harga</button>
     <button ion-button (click)="print3()" class="btn">Print</button>
+    <button ion-button (click)="saveImage()" class="btn">Save Image</button>
     <button ion-button (click)="done()" class="btn">DONE</button>
     <button ion-button (click)="duplicate_order()" class="btn">Duplicate Order</button>
   </div>

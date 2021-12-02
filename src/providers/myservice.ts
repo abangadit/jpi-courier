@@ -16,6 +16,7 @@ export class Myservice {
   public base_url_image:String   = this.base+"uploads/";
   public fcm_token : String = "";
   public header_key = "d2FrdWxpbmVybm92YXRhbWFpbmZpc2lvbg==";
+  public app_version : String = "1.1.1";
 
   constructor(public http: Http) {
     console.log('Hello Myservice Provider');

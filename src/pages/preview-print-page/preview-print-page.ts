@@ -8,6 +8,7 @@ import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 import { Http,Headers,RequestOptions } from '@angular/http';
 import { Base64 } from '@ionic-native/base64';
 import { HTTP } from '@ionic-native/http';
+import { File } from '@ionic-native/file';
 import 'rxjs/Rx';
 
 import { Login } from '../login/login';
@@ -20,6 +21,7 @@ import { Myservice } from '../../providers/myservice';
 
 import * as JsBarcode from "JsBarcode";
 import * as html2canvas from 'html2canvas';
+import domtoimage from 'dom-to-image';
 declare let BTPrinter: any;
 declare var window: any;
 
@@ -35,6 +37,7 @@ export class PreviewPrintPage {
   selectedPrinter:any=[];selectedPrinter2:any=[];
   printerList;printerList2;
   base64image = " ";
+  base64image2;
 
   pengirim_negara;
   pengirim_tanggal;
@@ -80,7 +83,10 @@ export class PreviewPrintPage {
 
   packing_price;
 
+  imgNota;
+
   constructor(
+    public file: File,
     public _zone: NgZone,
     public http: Http,
     public appCtrl: App,
@@ -203,11 +209,35 @@ export class PreviewPrintPage {
       }, 101); // Priority 101 will override back button handling (we set in app.component.ts) as it is bigger then priority 100 configured in app.component.ts file */
   }
   show_harga(){
+    //this.createThumbnail();
     if(this.harga_show){
       this.harga_show = false;
     }else{
       this.harga_show = true;
     }
+  }
+  createThumbnailX() {
+    let self = this;
+    const div = document.getElementById('mybarcode');
+    const options = {};
+    domtoimage.toPng(div, options).then((dataUrl) => {
+        console.log(dataUrl);
+        this.imgNota = dataUrl;
+        //Initialize JSPDF
+        //const doc = new jsPDF('p', 'mm', 'a4');
+        //Add image Url to PDF
+        //doc.addImage(dataUrl, 'PNG', 0, 0, 210, 340);
+        //doc.save('pdfDocument.pdf');
+    });
+    let element = document.getElementById("mybarcode");
+    console.log(element);
+    if (element !== null && element !== undefined) {
+      html2canvas(element).then(function (canvas: any) {
+        let dataURI = canvas.toDataURL();
+        console.log('dataURI', dataURI);
+        this.imgNota = dataURI;
+        }.bind(this));
+     }
   }
   createThumbnail() {
   let element = document.getElementById("mybarcode")
@@ -217,9 +247,11 @@ export class PreviewPrintPage {
         let dataURI = canvas.toDataURL('image/jpeg').replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
         console.log('img', dataURI);
         this.base64image = dataURI;
+        this.base64image2 = canvas.toDataURL('image/jpeg');
         //let blobObject = this.dataURItoBlob(dataURI);
         //console.log('img', blobObject);
-         }.bind(this));
+        //this.base64image2 = this.dataURItoBlob(dataURI);
+        }.bind(this));
      }
    }
    dataURItoBlob(dataURI: string) {
@@ -240,6 +272,48 @@ export class PreviewPrintPage {
     return new Blob([blob], {
       type: mimeString
     });
+  }
+  b64toBlob(b64Data, contentType) {
+    contentType = contentType || '';
+    var sliceSize = 512;
+    var byteCharacters = atob(b64Data);
+    var byteArrays = [];
+
+    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+        var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+        var byteNumbers = new Array(slice.length);
+        for (var i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        var byteArray = new Uint8Array(byteNumbers);
+
+        byteArrays.push(byteArray);
+    }
+
+  var blob = new Blob(byteArrays, {type: contentType});
+  return blob;
+  }
+  saveImage(){
+    this.createThumbnail();
+
+    var realData = this.base64image2.split(",")[1];
+    console.log("img nota");
+    console.log(this.base64image2);
+
+    let blob=this.b64toBlob(realData, 'image/png');
+    let nama = "resit"+Date.now()+".png";
+    this.file.writeFile("file:///storage/emulated/0/", nama, blob)
+    .then((a)=>{
+      console.log(a);
+      alert("saved to file:///storage/emulated/0/"+nama)
+    })
+    .catch((err)=>{
+      alert(err);
+      console.log('error writing blob ');
+      console.log(err);
+    })
   }
   list2(){
     var self = this;

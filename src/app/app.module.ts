@@ -1,3 +1,5 @@
+import { NotaKotak } from './../pages/nota-kotak/nota-kotak';
+import { KotakKosong } from './../pages/kotak-kosong/kotak-kosong';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -38,6 +40,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Myservice } from '../providers/myservice';
 import { PrinterService } from "../providers/printerservice";
 
+import * as $ from 'jquery';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,8 @@ import { PrinterService } from "../providers/printerservice";
     PackageContainer,
     DetailOrder,
     PilihPaket,
+    KotakKosong,
+    NotaKotak,
     Login,
     ForgotPage,
     TabsPage
@@ -78,6 +83,8 @@ import { PrinterService } from "../providers/printerservice";
     PackageContainer,
     DetailOrder,
     PilihPaket,
+    KotakKosong,
+    NotaKotak,
     Login,
     ForgotPage,
     TabsPage

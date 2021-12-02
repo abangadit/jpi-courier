@@ -17,6 +17,8 @@ import { File } from '@ionic-native/file';
 import { Transfer, TransferObject } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
+
+declare var jQuery: any;
 declare var cordova: any;
 
 @Component({
@@ -80,6 +82,8 @@ export class DialogHitungtotal {
   packing_price = 0;
   packing_name;
 
+  agen_name;
+
   constructor(
     public http: Http,
     public appCtrl: App,
@@ -100,6 +104,21 @@ export class DialogHitungtotal {
     private filePath: FilePath,
     public actionSheetCtrl: ActionSheetController,
     public serv: Myservice) {
+
+    var head = this;
+    jQuery(document).ready(function(){
+      
+      // Initialize select2
+      jQuery("#selUser").select2({ dropdownCssClass: "myFont" }).on("change", function (e) {
+        var str = jQuery("#selUser .select2-choice span").text();
+        console.log(this.value)
+        head.selected_agen = this.value;
+        console.log(e)
+        console.log(str);
+        head.isAgen = true;
+      })
+    });
+
     this.resi_id = navParams.get('resi_id');
     this.renderer.setElementClass(viewCtrl.pageRef().nativeElement, 'my-popup', true);
 
@@ -204,6 +223,9 @@ export class DialogHitungtotal {
   }
   setKomisi(val){
     this.isAgen = true;
+    console.log(val);
+    console.log(this.isAgen);
+    this.agen_name = this.get_id(this.agen,val);
     //this.service_charge = parseInt(this.komisi);
     //this.total = parseInt(this.total) - this.service_charge;
     //this.total_all = parseInt(this.total)+this.tambahan+this.service_charge;
@@ -295,6 +317,7 @@ export class DialogHitungtotal {
   alert.present();
   }
   process_create_order_debug(){
+    let agen = this.get_id(this.agen,this.selected_agen);
     var valueToPush = { };
     valueToPush["login_id"] = this.login_id;
     valueToPush["pengirim_tanggal"] = this.pengirim_tanggal;
@@ -324,6 +347,8 @@ export class DialogHitungtotal {
     valueToPush['service_charge'] = this.service_charge.toString();
     valueToPush['tambahan'] = this.tambahan.toString();
     valueToPush['agen'] = this.selected_agen;
+    valueToPush['agenx'] = this.agen[agen].kode;
+    valueToPush['isAgen'] = this.isAgen;
     valueToPush['komisi'] = this.komisi;
 
     valueToPush['packing']        = this.packing;

@@ -316,7 +316,7 @@ export class DetailOrder {
   }
   change_status(){
     console.log("1 "+this.receipt_number);
-    let profileModal = this.modalCtrl.create(DialogChangeStatus, { resi_id: this.resi_id,resi:this.receipt_number });
+    let profileModal = this.modalCtrl.create(DialogChangeStatus, { resi_id: this.resi_id,resi:this.receipt_number, last_status: this.last_status });
         profileModal.onDidDismiss(data => {
           console.log(data);
           this.get_detail(this.order_id);

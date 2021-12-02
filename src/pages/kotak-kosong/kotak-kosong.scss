@@ -1,0 +1,59 @@
+page-kotak-kosong {
+  .img_paket{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .img_paket img{
+    height: 170px;
+  }
+  .img_paket p{
+    color: #4B9ACF;
+    font-size: 20px;
+  }
+  .boxes{
+    width: 100%;
+    float: left;
+    padding: 10px 12px 10px 12px;
+  }
+  .box{
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #dadada;
+    padding: 10px;
+  }
+  .box-label{
+    float: left;
+    width: 40%;
+  }
+  .box-action{
+    float: left;
+    width: 60%;
+    text-align: center;
+  }
+  .minus{
+    float: left;
+    width: 28%;
+    background: darkred;
+    color: #fff;
+    height: 22px;
+    font-size: 15px;
+  }
+  .plus{
+    float: left;
+    width: 28%;
+    background: darkblue;
+    color: #fff;
+    height: 22px;
+    font-size: 15px;
+  }
+  .qty{
+    float: left;
+    width: 44%;
+    border: 0;
+    border: 1px solid #dadada;
+    border-radius: 0px;
+    height: 22px;
+    text-align: center;
+  }
+}

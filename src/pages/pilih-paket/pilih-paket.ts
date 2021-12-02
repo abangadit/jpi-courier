@@ -1,3 +1,4 @@
+import { KotakKosong } from './../kotak-kosong/kotak-kosong';
 import { Component } from '@angular/core';
 import { App, IonicPage, NavController, NavParams, LoadingController, ToastController,AlertController,Platform,MenuController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -13,6 +14,8 @@ import { TabsPage } from '../tabs/tabs';
 import { PreviewPrintPage } from '../preview-print-page/preview-print-page';
 
 import { Myservice } from '../../providers/myservice';
+declare var jQuery: any;
+
 @Component({
   selector: 'page-pilih-paket',
   templateUrl: 'pilih-paket.html',
@@ -36,6 +39,13 @@ export class PilihPaket {
       console.log("token",val);
       this.token = val;
     });
+
+    jQuery(document).ready(function(){
+ 
+      // Initialize select2
+      jQuery("#selUser").select2();
+    });
+
   }
 
   ionViewDidLoad() {
@@ -50,6 +60,9 @@ export class PilihPaket {
   select_box(id,name){
     this.data_box = [];
     this.navCtrl.push(HomePage,{tipe_paket:"box",box_id:id,box_name:name});
+  }
+  kotak_kosong(){
+    this.navCtrl.push(KotakKosong,{tipe_paket:"box"});
   }
 
 }

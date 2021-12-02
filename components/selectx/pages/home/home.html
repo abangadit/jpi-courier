@@ -1,0 +1,208 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Ionic SelectSearchable</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-item-group margin-bottom>
+    <ion-item-divider color="light">
+      <h1>Basic</h1>
+    </ion-item-divider>
+    <ion-item>
+      <select-searchable
+        [(ngModel)]="port1"
+        itemValueField="id"
+        itemTextField="name"
+        [items]="ports"
+        (onChange)="portChange($event)">
+        <ng-template selectSearchableLabelTemplate>
+          Port
+        </ng-template>
+      </select-searchable>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group margin-bottom>
+    <ion-item-divider color="light">
+      <h1>Initial value</h1>
+    </ion-item-divider>
+    <ion-item>
+      <select-searchable
+        [(ngModel)]="port2"
+        itemValueField="id"
+        itemTextField="name"
+        [items]="ports"
+        (onChange)="portChange($event)">
+        <ng-template selectSearchableLabelTemplate>
+          Port
+        </ng-template>
+      </select-searchable>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group margin-bottom>
+    <ion-item-divider color="light">
+      <h1>Search</h1>
+    </ion-item-divider>
+    <ion-item>
+      <select-searchable
+        [(ngModel)]="port3"
+        itemValueField="id"
+        itemTextField="name"
+        [items]="ports"
+        [canSearch]="true"
+        (onChange)="portChange($event)">
+        <ng-template selectSearchableLabelTemplate>
+          Port
+        </ng-template>
+      </select-searchable>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group margin-bottom>
+    <ion-item-divider color="light">
+      <h1>Search (Async)</h1>
+    </ion-item-divider>
+    <ion-item>
+      <select-searchable
+        [(ngModel)]="port4"
+        itemValueField="id"
+        itemTextField="name"
+        [items]="ports"
+        [canSearch]="true"
+        searchPlaceholder="Enter 3 or more characters, e.g. &quot;san&quot;"
+        (onSearch)="searchPorts($event)"
+        (onChange)="portChange($event)">
+        <ng-template selectSearchableLabelTemplate>
+          Port
+        </ng-template>
+      </select-searchable>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group margin-bottom>
+    <ion-item-divider color="light">
+      <h1>Item template</h1>
+    </ion-item-divider>
+    <ion-item>
+      <select-searchable
+        [(ngModel)]="port5"
+        itemValueField="id"
+        itemTextField="name"
+        [items]="ports"
+        [canSearch]="true"
+        (onChange)="portChange($event)">
+        <ng-template selectSearchableLabelTemplate>
+          Port
+        </ng-template>
+        <ng-template selectSearchableItemTemplate let-port="item">
+          {{port.name}} ({{port.country}})
+        </ng-template>
+      </select-searchable>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group margin-bottom>
+    <ion-item-divider color="light">
+      <h1>Multiple selection</h1>
+    </ion-item-divider>
+    <ion-item>
+      <select-searchable
+        [(ngModel)]="port6"
+        itemValueField="id"
+        itemTextField="name"
+        [items]="ports"
+        [canSearch]="true"
+        [isMultiple]="true"
+        (onChange)="portChange($event)">
+        <ng-template selectSearchableLabelTemplate>
+          Port
+        </ng-template>
+      </select-searchable>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group margin-bottom>
+    <ion-item-divider color="light">
+      <h1>"Clear" button</h1>
+    </ion-item-divider>
+    <ion-item>
+      <select-searchable
+        [(ngModel)]="port7"
+        itemValueField="id"
+        itemTextField="name"
+        [items]="ports"
+        (onChange)="portChange($event)"
+        [canReset]="true">
+        <ng-template selectSearchableLabelTemplate>
+          Port
+        </ng-template>
+      </select-searchable>
+    </ion-item>
+  </ion-item-group>
+  <form [formGroup]="form" margin-bottom>
+    <ion-item-group>
+      <ion-item-divider color="light">
+        <h1>Angular Forms support</h1>
+      </ion-item-divider>
+      <ion-item>
+        <select-searchable
+          formControlName="port8"
+          itemValueField="id"
+          itemTextField="name"
+          [items]="ports"
+          [canSearch]="true"
+          (onChange)="portChange($event)">
+          <ng-template selectSearchableLabelTemplate>
+            Port
+          </ng-template>
+        </select-searchable>
+      </ion-item>
+      <ion-item>
+        <ion-badge color="danger" *ngIf="!form.valid">Invalid</ion-badge>
+        <ion-badge color="secondary" *ngIf="form.valid">Valid</ion-badge>
+        <button ion-button item-right (click)="reset()" [disabled]="!form.valid">
+          Reset
+        </button>
+      </ion-item>
+    </ion-item-group>
+  </form>
+  <ion-item-group margin-bottom>
+    <ion-item-divider color="light">
+      <h1>Flat array, e.g. ['Vladivostok', ...]</h1>
+    </ion-item-divider>
+    <ion-item>
+      <select-searchable
+        [(ngModel)]="port9"
+        [items]="portNames"
+        [canSearch]="true"
+        (onChange)="portChange($event)">
+        <ng-template selectSearchableLabelTemplate>
+          Port
+        </ng-template>
+      </select-searchable>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group margin-bottom>
+    <ion-item-divider color="light">
+      <h1>Infinite scroll</h1>
+    </ion-item-divider>
+    <ion-item>
+      <select-searchable
+        [(ngModel)]="port10"
+        itemValueField="id"
+        itemTextField="name"
+        [items]="ports10"
+        [hasInfiniteScroll]="true"
+        [canSearch]="true"
+        (onInfiniteScroll)="getMorePorts($event)"
+        (onChange)="portChange($event)">
+        <ng-template selectSearchableLabelTemplate>
+          Port
+        </ng-template>
+      </select-searchable>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group margin-bottom>
+    <ion-item-divider color="light">
+      <h1>Inside modal</h1>
+    </ion-item-divider>
+    <ion-item>
+      <button ion-button (click)="openModal()">Open</button>
+    </ion-item>
+  </ion-item-group>
+</ion-content>

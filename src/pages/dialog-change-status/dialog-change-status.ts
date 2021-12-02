@@ -33,6 +33,7 @@ export class DialogChangeStatus {
   foto_file = " ";
   ktp_file = " ";
   jenis_upload = "foto";
+  last_status;
 
   foto_sudah_diupload = false;
   ktp_sudah_diupload  = false;
@@ -59,6 +60,7 @@ export class DialogChangeStatus {
     public serv: Myservice) {
     this.resi_id = navParams.get('resi_id');
     this.resi = navParams.get('resi');
+    this.last_status = navParams.get('last_status');
     console.log("2 "+this.resi);
     this.renderer.setElementClass(viewCtrl.pageRef().nativeElement, 'my-popup', true);
 
@@ -79,6 +81,8 @@ export class DialogChangeStatus {
       }else{
         this.update_status();
       }
+    }else if(this.last_status=="CANCEL"){
+      alert("Status Resi CANCEL Tidak Dapat Dirubah Kembali!");
     }else{
       this.update_status();
     }

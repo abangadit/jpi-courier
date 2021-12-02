@@ -1,12 +1,18 @@
 <ion-content class="mycustomdialog" padding>
   <!-- <label class="lbl">Total {{total}}</label> -->
   <ion-list>
-    <ion-item>
+    <!-- <ion-item>
       <ion-label>Agen</ion-label>
       <ion-select [(ngModel)]="selected_agen" interface="popover" (ionChange)="setKomisi($event)">
         <ion-option *ngFor="let item of agen" value="{{item.id}}">{{item.name}}</ion-option>
       </ion-select>
-    </ion-item>
+    </ion-item> -->
+    <div class="divgue">
+      <ion-label>Agen</ion-label>
+      <select [(ngModel)]="selected_agen" (ionChange)="setKomisi($event)" id="selUser">
+        <option *ngFor="let item of agen" value="{{item.id}}" style="font-size:16px">{{item.name}}</option>
+      </select>
+    </div>
     <ion-item>
       <ion-label stacked>Base Price</ion-label>
       <ion-input type="text" class="pengirim_nama" [(ngModel)]="total" (input)="hitung($event.target.value)"></ion-input>

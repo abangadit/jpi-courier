@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <div class="myheader">
+      <div class="judul_kiri">
+        Print
+      </div>
+      <div class="judul_kanan">
+
+      </div>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div id="mybarcode" class="mybarcode">
+    <div class="title_barcode">JPI</div>
+    <div class="subtitle_barcode">Jakarta Cargo (m) Sdn.Bhd</div>
+    <div class="info_resi" style="padding:0px 20px;text-transform: uppercase;font-weight:bold">
+      <table class="table_resi">
+        <tr>
+          <td class="td_title">No Receipt</td>
+          <td>: {{no}}</td>
+        </tr>
+        <tr>
+          <td class="td_title">Date</td>
+          <td>: {{tgl}}</td>
+        </tr>
+        <tr>
+          <td class="td_title">Name</td>
+          <td>: {{name}}</td>
+        </tr>
+        <tr>
+          <td class="td_title">Phone</td>
+          <td>: {{phone}}</td>
+        </tr>
+        <tr>
+          <td class="td_title"> </td>
+        </tr>
+        <tr>
+          <td class="td_title">Item Kotak</td>
+        </tr>
+        <tr>
+          <td class="td_title"> </td>
+        </tr>
+        <tr>
+          <td class="td_title">{{box[0]}}(10) x {{price[0]}}</td>
+          <td>: {{price[0]*10}}</td>
+        </tr>
+        <tr>
+          <td class="td_title">{{box[1]}}(12) x {{price[1]}}</td>
+          <td>: {{price[1]*12}}</td>
+        </tr>
+        <tr>
+          <td class="td_title">{{box[2]}}(17) x {{price[2]}}</td>
+          <td>: {{price[2]*17}}</td>
+        </tr>
+        <tr>
+          <td class="td_title">{{box[3]}}(20) x {{price[3]}}</td>
+          <td>: {{price[3]*20}}</td>
+        </tr>
+        <tr>
+          <td class="td_title"> </td>
+        </tr>
+        <tr>
+          <td class="td_title">Total</td>
+          <td>: {{total}}</td>
+        </tr>
+      </table>
+      <div class="terms"><hr>
+        <h5 style="text-align: center;">CAll CENTER : +62-8111-0500-777</h5><br>
+        <h5 style="text-align: center;">terma dan syarat sila rujuk kepada kotak rasmi JPI - Jakarta Cargo</h5>
+      </div>
+      <br><br><br><br><br><br>
+    </div>
+  </div>
+  <button ion-button block (click)="list2()">Choose Printer</button>
+  <ion-item *ngFor="let item of printerList2" (tap)="select_printer2(item)">
+    {{item}}
+  </ion-item>
+  <br><br><br>
+  <!-- <button ion-button block (click)="printSomeImage()">Print Debug</button> -->
+  <!-- <button ion-button block (click)="printMyBarcode()">Print</button> -->
+  <div class="div_button">
+    <button ion-button (click)="print3()" class="btn">Print</button>
+    <button ion-button (click)="done()" class="btn">DONE</button>
+  </div>
+  <!-- <button ion-button block (click)="print_harga()">Print Dengan Harga</button> -->
+  <!-- <button ion-button block (click)="disconnect_yuk()">Disconnect</button> -->
+
+</ion-content>
