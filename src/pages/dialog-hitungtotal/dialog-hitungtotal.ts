@@ -106,18 +106,6 @@ export class DialogHitungtotal {
     public serv: Myservice) {
 
     var head = this;
-    jQuery(document).ready(function(){
-      
-      // Initialize select2
-      jQuery("#selUser").select2({ dropdownCssClass: "myFont" }).on("change", function (e) {
-        var str = jQuery("#selUser .select2-choice span").text();
-        console.log(this.value)
-        head.selected_agen = this.value;
-        console.log(e)
-        console.log(str);
-        head.isAgen = true;
-      })
-    });
 
     this.resi_id = navParams.get('resi_id');
     this.renderer.setElementClass(viewCtrl.pageRef().nativeElement, 'my-popup', true);
@@ -173,11 +161,31 @@ export class DialogHitungtotal {
     this.bukti2 = this.navParams.get("image_2");
 
     var pak             = this.navParams.get("packing");
-    console.log("packing info");
-    console.log(pak);
+    console.log("navParams");
+    console.log(this.navParams);
+    console.log("komisi");
+    console.log(this.komisi);
+    console.log(this.navParams.data['komisi']);
     this.packing        = pak.split("#")[0];
     this.packing_name   = pak.split("#")[1];
     this.packing_price  = pak.split("#")[2];
+
+
+    jQuery(document).ready(function(){
+      
+      // Initialize select2
+      jQuery("#selUser").select2({ dropdownCssClass: "myFont" }).on("change", function (e) {
+        var str = jQuery("#selUser .select2-choice span").text();
+        console.log(this.value)
+        head.selected_agen = this.value;
+        console.log(e)
+        console.log("komisi");
+        console.log(head.komisi)
+        //console.log(str);
+        head.isAgen = true;
+        head.service_charge = (head.komisi);
+      })
+    });
 
     //this.service_charge = (25/100)*this.navParams.get("total");
 
