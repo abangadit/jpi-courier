@@ -228,6 +228,10 @@
       <ion-label stacked>Non-Size</ion-label>
       <ion-textarea rows="1" class="non_size" [(ngModel)]="non_size"></ion-textarea>
     </ion-item>
+    <ion-item>
+      <ion-label stacked>Timbang (Kilogram)</ion-label>
+      <ion-input type="number" class="kilogram" [(ngModel)]="kilogram"></ion-input>
+    </ion-item>
     <!-- <ion-item>
       <ion-label stacked>Panjang</ion-label>
       <ion-input class="non_size" [(ngModel)]="panjang" type="number" placeholder="panjang"></ion-input>
@@ -250,6 +254,10 @@
       <ion-label stacked>Berat Total</ion-label>
       <ion-input type="number" class="penerima_telp" [(ngModel)]="berat_total"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label stacked>Timbang (Kilogram)</ion-label>
+      <ion-input type="number" class="kilogram" [(ngModel)]="kilogram"></ion-input>
+    </ion-item>
     <br><br>
   </div>
 
@@ -266,8 +274,23 @@
     </ion-item>
   </ion-row> -->
 
-  <button ion-button block (click)="camera1()">Photo 1</button>
-  <button ion-button block (click)="camera2()">Photo 2</button>
+  <ion-row>
+    <ion-col size="6">
+      <button ion-button block (click)="camera1()">Photo 1</button>
+    </ion-col>
+    <ion-col size="6">
+      <!-- <button ion-button block color="danger" (click)="camera2()">Browse 1</button> -->
+      <input type="file" ng2FileSelect [uploader]="uploader" id="upload-photo"/>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <button ion-button block (click)="camera2()">Photo 2</button>
+    </ion-col>
+    <ion-col size="6">
+      <input type="file" ng2FileSelect [uploader]="uploader2" id="upload-photo"/>
+    </ion-col>
+  </ion-row>
 
   <div class="info">
     Please Turn On And Connect Phone To Bluetooth Printer Before Tap 'Create And Print Receipt'

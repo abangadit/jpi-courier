@@ -83,6 +83,7 @@ export class DialogHitungtotal {
   packing_name;
 
   agen_name;
+  kilogram;
 
   constructor(
     public http: Http,
@@ -161,6 +162,7 @@ export class DialogHitungtotal {
     this.bukti2 = this.navParams.get("image_2");
 
     var pak             = this.navParams.get("packing");
+    this.kilogram       = this.navParams.get("kilogram");
     console.log("navParams");
     console.log(this.navParams);
     console.log("komisi");
@@ -183,7 +185,7 @@ export class DialogHitungtotal {
         console.log(head.komisi)
         //console.log(str);
         head.isAgen = true;
-        head.service_charge = (head.komisi);
+        //head.service_charge = (head.komisi);
       })
     });
 
@@ -377,7 +379,7 @@ export class DialogHitungtotal {
       content: "Please wait..."
     });
     this.loader.present();
-    var link = this.serv.base_url+'masterdata/createorder';
+    var link = this.serv.base_url+'masterdata2/createorder';
     let body = new FormData;
     body.append("login_id",this.login_id);
     body.append("pengirim_tanggal",this.pengirim_tanggal);
@@ -425,6 +427,7 @@ export class DialogHitungtotal {
     body.append('packing',this.packing.toString());
     body.append('packing_name',this.packing_name);
     body.append('packing_price',this.packing_price.toString());
+    body.append('kilogram',this.kilogram.toString());
 
     let headers = new Headers();
     headers.append("Authorization",this.token);

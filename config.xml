@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.jpicargo.couriernew" version="0.0.30" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>JPIM Courier</name>
-    <description>JPIM Courier Apps</description>
+<widget id="com.jpicargo.couriernew" version="0.0.32" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>JPI Courier</name>
+    <description>JPI Courier Apps</description>
     <author email="abang.aditeka@gmail.com" href="http://abangadit.com/">@abangadit</author>
     <content src="index.html" />
     <access origin="*" subdomains="true" />
@@ -21,6 +21,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="ScrollEnabled" value="false" />
+    <preference name="android-targetSdkVersion" value="31" />
     <preference name="android-minSdkVersion" value="22" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
@@ -28,6 +29,8 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="none" />
     <preference name="SplashScreenDelay" value="3000" />
+    <preference name="AndroidWindowSplashScreenAnimatedIcon" value="app/src/main/AndroidManifest.xml" />
+    <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/icon/drawable-xxxhdpi-icon.png" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />

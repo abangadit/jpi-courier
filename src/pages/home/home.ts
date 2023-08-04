@@ -17,6 +17,8 @@ import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { FileUploader, FileItem } from 'ng2-file-upload';
+
 declare var cordova: any;
 
 @Component({
@@ -91,6 +93,11 @@ export class HomePage {
 
   packing;
 
+  kilogram;
+  uploader;
+  uploader2;
+  loading;
+
   constructor(
     public http: Http,
     public appCtrl: App,
@@ -109,6 +116,8 @@ export class HomePage {
     private transfer: FileTransfer,
     public platform: Platform,
     public serv: Myservice) {
+    this.setupUploader();
+    this.setupUploader2();
 
     this.tipe_paket = this.navParams.get("tipe_paket");
     this.box_id = this.navParams.get("box_id");
@@ -189,6 +198,88 @@ export class HomePage {
   presentToast(tes){
 
   }
+  setupUploader() {
+      this.uploader = new FileUploader({  
+        url: this.serv.base_url + "upload/upload",
+        method: 'POST',
+        autoUpload:true,
+      });
+      this.uploader.onBeforeUploadItem = (item: FileItem) => {
+          console.log("----onBeforeUploadItem");
+          this.loader = this.loadingCtrl.create({
+            content: "Please wait..."
+          });
+          this.loader.present();
+        
+          //add additional parameters for the serverside
+          this.uploader.options.additionalParameter = {
+              name: item.file.name,
+              section: "whatever",
+              //userid = __this.auth.user.userid;
+          };
+      };
+      
+      this.uploader.onAfterAddingFile = (fileItem) => {
+          console.log("JUST ADDED A FILE: " + fileItem._file.name);
+          fileItem.withCredentials = false;
+      }
+
+      this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+        console.log("A ITEM UPLOADED SUCCESSFULLY");
+        console.log(response);
+        if(response.includes("error")){
+          alert(response);
+          this.isUploaded = false;
+        }else{
+          alert("file uploaded");
+          this.bukti1 = response;
+          this.isUploaded = true;
+        }
+        if(this.loader){ this.loader.dismiss(); this.loader = null; }
+        console.log("--uploader.getNotUploadedItems().length: " + this.uploader.getNotUploadedItems().length);
+    };
+  }
+  setupUploader2() {
+      this.uploader2 = new FileUploader({  
+        url: this.serv.base_url + "upload/upload",
+        method: 'POST',
+        autoUpload:true,
+      });
+      this.uploader2.onBeforeUploadItem = (item: FileItem) => {
+          console.log("----onBeforeUploadItem");
+          this.loader = this.loadingCtrl.create({
+            content: "Please wait..."
+          });
+          this.loader.present();
+        
+          //add additional parameters for the serverside
+          this.uploader2.options.additionalParameter = {
+              name: item.file.name,
+              section: "whatever",
+              //userid = __this.auth.user.userid;
+          };
+      };
+      
+      this.uploader2.onAfterAddingFile = (fileItem) => {
+          console.log("JUST ADDED A FILE: " + fileItem._file.name);
+          fileItem.withCredentials = false;
+      }
+
+      this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+        console.log("A ITEM UPLOADED SUCCESSFULLY");
+        console.log(response);
+        if(response.includes("error")){
+          alert(response);
+          this.isUploaded = false;
+        }else{
+          alert("file uploaded");
+          this.bukti2 = response;
+          this.isUploaded = true;
+        }
+        if(this.loader){ this.loader.dismiss(); this.loader = null; }
+        console.log("--uploader.getNotUploadedItems().length: " + this.uploader2.getNotUploadedItems().length);
+    };
+  }
   camera1(){
     this.takePicture(this.camera.PictureSourceType.CAMERA,"1");
   }
@@ -258,7 +349,7 @@ export class HomePage {
       content: "Please wait..."
     });
     this.loader.present();
-    var url = this.serv.base_url+"upload/upload";
+    var url = this.serv.base_url+"upload/upload"; 
     console.log(url);
     // File for Upload
     var targetPath = this.pathForImage(this.lastImage);
@@ -776,8 +867,31 @@ export class HomePage {
     console.log(this.isi_box);
     let spl = this.isi_box.split(";");
     console.log(spl);
+    
+    if (!this.kilogram){
+      alert("Kilogram Required")
+    }else if(!this.bukti1){
+      alert("Photo 1 Required")
+    }else if(!this.bukti2){
+      alert("Photo 2 Required")
+    }else{
+      for(let i=0;i<spl.length;i++){
+        if(spl[i]){
+          var eachItem = {
+              "nama_barang": spl[i],
+              //"berat": this.berat[x],
+              //"qty":this.qty[x],
+              "qty":1,
+              "keterangan":"-"
+          };
+          this.obj.push(eachItem);
+        }
+      }
+      console.log(this.obj);
+      this.hitung_total();
+    }
     // for(let x = 0;x<this.jumlah_item.length;x++){
-    //   var eachItem = {
+    //   var eachItem = { 
     //        "nama_barang": this.nama_barang[x],
     //        //"berat": this.berat[x],
     //        //"qty":this.qty[x],
@@ -786,20 +900,6 @@ export class HomePage {
     //    };
     //    this.obj.push(eachItem);
     // }
-    for(let i=0;i<spl.length;i++){
-      if(spl[i]){
-        var eachItem = {
-            "nama_barang": spl[i],
-            //"berat": this.berat[x],
-            //"qty":this.qty[x],
-            "qty":1,
-            "keterangan":"-"
-        };
-        this.obj.push(eachItem);
-      }
-    }
-    console.log(this.obj);
-    this.hitung_total();
   }
   get_id(obj,id){
     for(let x = 0;x<obj.length;x++){
@@ -858,6 +958,7 @@ export class HomePage {
     body.append('jenis_pengiriman', this.jenis_pengiriman);
     body.append('berat_total',this.berat_total);
     body.append('tipe_paket',this.tipe_paket);
+    body.append('kilogram',this.kilogram);
 
     body.append('panjang',this.panjang);
     body.append('lebar',this.lebar);
@@ -917,6 +1018,7 @@ export class HomePage {
             penerima_negara: this.penerima_negara,
             penerima_provinsi: this.penerima_provinsi,
             penerima_kota: this.penerima_kota,
+            kilogram: this.kilogram,
 
             panjang: this.panjang,
             lebar: this.lebar,

@@ -39,6 +39,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Myservice } from '../providers/myservice';
 import { PrinterService } from "../providers/printerservice";
+import { FileUploadModule } from 'ng2-file-upload';
 
 import * as $ from 'jquery';
 
@@ -66,6 +67,7 @@ import * as $ from 'jquery';
     NgxBarcodeModule,
     HttpModule,
     FormsModule,
+    FileUploadModule,
     IonicImageViewerModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()

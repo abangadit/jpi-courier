@@ -17,6 +17,7 @@ import { File } from '@ionic-native/file';
 import { Transfer, TransferObject } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
+import { FileUploader, FileItem } from 'ng2-file-upload';
 declare var cordova: any;
 
 @Component({
@@ -37,6 +38,7 @@ export class DialogChangeStatus {
 
   foto_sudah_diupload = false;
   ktp_sudah_diupload  = false;
+  uploader;isUploaded;bukti1;
 
   constructor(
     public http: Http,
@@ -58,6 +60,7 @@ export class DialogChangeStatus {
     private filePath: FilePath,
     public actionSheetCtrl: ActionSheetController,
     public serv: Myservice) {
+    this.setupUploader();
     this.resi_id = navParams.get('resi_id');
     this.resi = navParams.get('resi');
     this.last_status = navParams.get('last_status');
@@ -70,6 +73,47 @@ export class DialogChangeStatus {
     this.storage.get('id').then((val) => {
       this.login_id = val;
     });
+  }
+  setupUploader() {
+      this.uploader = new FileUploader({  
+        url: this.serv.base_url + "upload/upload",
+        method: 'POST',
+        autoUpload:true,
+      });
+      this.uploader.onBeforeUploadItem = (item: FileItem) => {
+          console.log("----onBeforeUploadItem");
+          this.loader = this.loadingCtrl.create({
+            content: "Please wait..."
+          });
+          this.loader.present();
+        
+          //add additional parameters for the serverside
+          this.uploader.options.additionalParameter = {
+              name: item.file.name,
+              section: "whatever",
+              //userid = __this.auth.user.userid;
+          };
+      };
+      
+      this.uploader.onAfterAddingFile = (fileItem) => {
+          console.log("JUST ADDED A FILE: " + fileItem._file.name);
+          fileItem.withCredentials = false;
+      }
+
+      this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+        console.log("A ITEM UPLOADED SUCCESSFULLY");
+        console.log(response);
+        if(response.includes("error")){
+          alert(response);
+          this.isUploaded = false;
+        }else{
+          alert("file uploaded");
+          this.bukti1 = response;
+          this.isUploaded = true;
+        }
+        if(this.loader){ this.loader.dismiss(); this.loader = null; }
+        console.log("--uploader.getNotUploadedItems().length: " + this.uploader.getNotUploadedItems().length);
+    };
   }
   close(){
     this.viewCtrl.dismiss();
